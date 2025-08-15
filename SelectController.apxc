@@ -1,0 +1,43 @@
+public class SelectController {
+    public String inputNumbers { get; set; }
+    public List<Integer> sortedNumbers { get; set; }
+
+    public SelectController() {
+        inputNumbers = '';
+        sortedNumbers = new List<Integer>();
+    }
+
+    public void sort() {
+        sortedNumbers.clear();
+
+        if (String.isNotBlank(inputNumbers)) {
+            List<String> numList = inputNumbers.split(',');
+            List<Integer> numbers = new List<Integer>();
+
+            for (String num : numList) {
+                num = num.trim();
+                if (num.isNumeric()) {
+                    numbers.add(Integer.valueOf(num));
+                }
+            }
+
+            // Selection sort
+            Integer n = numbers.size();
+            for (Integer i = 0; i < n - 1; i++) {
+                Integer minIndex = i;
+                for (Integer j = i + 1; j < n; j++) {
+                    if (numbers[j] < numbers[minIndex]) {
+                        minIndex = j;
+                    }
+                }
+                if (minIndex != i) {
+                    Integer temp = numbers[i];
+                    numbers[i] = numbers[minIndex];
+                    numbers[minIndex] = temp;
+                }
+            }
+
+            sortedNumbers.addAll(numbers);
+        }
+    }
+}
