@@ -1,0 +1,17 @@
+<apex:page controller="SelectController">
+    <apex:form >
+        <apex:pageBlock title="Selection Sort UI">
+            <apex:pageBlockSection title="Enter Numbers">
+                <apex:outputLabel value="Comma-separated numbers (e.g., 23, 4, 15):" for="inputField"/>
+                <apex:inputText id="inputField" value="{!inputNumbers}" size="50"/>
+            </apex:pageBlockSection>
+
+            <apex:commandButton value="Sort" action="{!sort}" rerender="results"/>
+
+            <apex:pageBlockSection title="Sorted List" id="results" rendered="{!NOT(ISNULL(sortedNumbers))}">
+                <apex:outputText value="Sorted List: {!sortedNumbers}"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
+                     
